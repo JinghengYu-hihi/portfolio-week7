@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jingheng Yu — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #fdf6f0;
+      --bg-soft: #fbe9dd;
+      --card: #fffaf5;
+      --ink: #6b4a3a;
+      --ink-soft: #9b7a6a;
+      --accent: #e8a598;
+      --accent-deep: #d97757;
+      --line: #f0d9c8;
+      --shadow: 0 12px 30px rgba(176, 120, 90, 0.14);
+      --shadow-soft: 0 6px 18px rgba(176, 120, 90, 0.10);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+    body {
+      font-family: 'Quicksand', system-ui, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(160deg, var(--bg) 0%, var(--bg-soft) 100%);
+      background-attachment: fixed;
+      line-height: 1.65;
+      min-height: 100vh;
+      padding: 0 16px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== Shared top nav ===== */
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 0;
+      background: rgba(253, 246, 240, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .topnav a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--ink-soft);
+      font-weight: 600;
+      font-size: 0.88rem;
+      background: var(--card);
+      padding: 8px 16px;
+      border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(176, 120, 90, 0.08);
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .topnav a:hover { color: var(--accent-deep); transform: translateY(-1px); }
+
+    .topnav a.active {
+      background: var(--accent-deep);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(217, 119, 87, 0.30);
+    }
+
+    /* ===== Home section ===== */
+    #home { padding: 24px 0 40px; }
+
+    #home .hero {
+      text-align: center;
+      padding: 40px 20px 20px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f5c6a8, #e8a598 60%, #d97757);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 26px;
+      box-shadow: var(--shadow);
+      border: 6px solid #fffaf5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 28% center;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      color: var(--accent-deep);
+      margin-bottom: 10px;
+    }
+
+    .hero .tagline {
+      color: var(--ink-soft);
+      font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .intro {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 32px clamp(20px, 5vw, 44px);
+      margin: 36px auto 8px;
+      max-width: 720px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      font-size: clamp(1rem, 2.2vw, 1.12rem);
+      color: var(--ink);
+    }
+
+    /* ===== Resume section ===== */
+    #resume { padding: 40px 0; }
+
+    .section-head {
+      text-align: center;
+      margin: 0 0 28px;
+    }
+
+    .section-head h2 {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      color: var(--accent-deep);
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+      margin-top: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(176, 120, 90, 0.20);
+    }
+
+    .card .icon {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bg-soft), #f5d6c4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 2rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: var(--accent-deep);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    /* ===== Contact section ===== */
+    #contact { padding: 40px 0; }
+
+    .contact-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 5vw, 40px);
+      margin: 20px 0;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .contact-card .envelope {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .contact-card p {
+      color: var(--ink);
+      font-size: clamp(0.98rem, 2.2vw, 1.08rem);
+      margin-bottom: 22px;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent-deep);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.98rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 8px 22px rgba(217, 119, 87, 0.30);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      word-break: break-all;
+    }
+
+    .email-btn:hover {
+      background: #c56843;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(217, 119, 87, 0.38);
+    }
+
+    .email-btn:active { transform: scale(0.97); }
+
+    .email-btn .addr {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+
+    .contact-form {
+      margin-top: 26px;
+      text-align: left;
+      display: grid;
+      gap: 16px;
+    }
+
+    .contact-form .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .contact-form label {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--ink);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--ink);
+      background: var(--card);
+      border: 1px solid rgba(217, 119, 87, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      box-sizing: border-box;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    .contact-form button.email-btn {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      justify-self: center;
+    }
+
+    /* ===== Projects section (scoped) ===== */
+    #projects { padding: 40px 0 20px; }
+
+    #projects .projects-header { text-align: center; padding: 0 20px 24px; }
+
+    #projects .projects-header h1 {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      color: var(--accent-deep);
+      margin-bottom: 6px;
+    }
+
+    #projects .projects-header .tagline {
+      color: var(--ink-soft);
+      font-size: clamp(0.92rem, 2.2vw, 1.02rem);
+      font-weight: 500;
+    }
+
+    #projects .container { max-width: 760px; }
+
+    /* ===== Featured project card ===== */
+    #projects .project-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0 0 18px;
+      padding: 22px 24px;
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      overflow: hidden;
+      background: linear-gradient(135deg, #090e17 0%, #111c2e 55%, #090e17 100%);
+      border: 1px solid rgba(94, 224, 255, 0.22);
+      box-shadow: 0 16px 36px rgba(36, 51, 70, 0.26);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    #projects .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 50%, rgba(94, 224, 255, 0.16), transparent 55%);
+      pointer-events: none;
+    }
+
+    #projects .project-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(94, 224, 255, 0.45);
+      box-shadow: 0 22px 46px rgba(36, 51, 70, 0.34);
+    }
+
+    #projects .pc-body { position: relative; z-index: 1; flex: 1; min-width: 0; }
+
+    #projects .pc-kicker {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #7fd8f2;
+      margin-bottom: 5px;
+    }
+
+    #projects .project-card h2 {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: clamp(1.12rem, 3vw, 1.45rem);
+      color: #eaf9ff;
+      margin-bottom: 7px;
+    }
+
+    #projects .project-card p {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: #9fb3c6;
+      margin-bottom: 12px;
+    }
+
+    #projects .pc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #5ee0ff;
+    }
+
+    #projects .pc-orbit {
+      position: relative;
+      z-index: 1;
+      flex: none;
+      width: 88px;
+      height: 88px;
+    }
+
+    #projects .pc-orbit span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+    }
+
+    #projects .pc-orbit .ring1 {
+      width: 84px;
+      height: 84px;
+      margin: -42px 0 0 -42px;
+      border: 1px solid rgba(94, 224, 255, 0.26);
+    }
+
+    #projects .pc-orbit .ring2 {
+      width: 50px;
+      height: 50px;
+      margin: -25px 0 0 -25px;
+      border: 1px solid rgba(143, 123, 255, 0.4);
+    }
+
+    #projects .pc-orbit .core {
+      width: 22px;
+      height: 22px;
+      margin: -11px 0 0 -11px;
+      background: radial-gradient(circle at 35% 35%, #ffc3a4, #ff5f3f 70%);
+      box-shadow: 0 0 18px rgba(255, 95, 63, 0.75);
+    }
+
+    #projects .pc-orbit .satellite {
+      width: 7px;
+      height: 7px;
+      margin: -3.5px 0 0 -3.5px;
+      background: #dff7ff;
+      box-shadow: 0 0 10px #5ee0ff;
+      animation: pcOrbit 7s linear infinite;
+    }
+
+    @keyframes pcOrbit {
+      from { transform: rotate(0deg) translateX(38px); }
+      to   { transform: rotate(360deg) translateX(38px); }
+    }
+
+    /* ===== Weekly project links ===== */
+    #projects .week-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 18px;
+    }
+
+    #projects .week-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--accent-deep);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(176, 120, 90, 0.08);
+      transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    #projects .week-links a::before {
+      content: '\25C8';
+      color: var(--accent);
+      font-size: 0.72rem;
+    }
+
+    #projects .week-links a:hover {
+      background: var(--bg-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 7px 18px rgba(176, 120, 90, 0.12);
+    }
+
+    #projects .app {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: clamp(20px, 4vw, 32px);
+      margin: 0 0 16px;
+      box-shadow: var(--shadow);
+    }
+
+    #projects .cal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    #projects .cal-title {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--accent-deep);
+    }
+
+    #projects .cal-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      color: var(--accent-deep);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    #projects .cal-btn:hover { background: var(--accent); color: #fff; }
+    #projects .cal-btn:active { transform: scale(0.92); }
+
+    #projects .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+
+    #projects .cal-dow {
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 6px 0;
+    }
+
+    #projects .cal-day {
+      aspect-ratio: 1 / 1;
+      border: none;
+      background: transparent;
+      border-radius: 50%;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    #projects .cal-day:hover:not(.empty) { background: var(--bg-soft); }
+    #projects .cal-day:active { transform: scale(0.9); }
+
+    #projects .cal-day.empty { cursor: default; }
+    #projects .cal-day.other { color: #d8c0b2; cursor: default; }
+    #projects .cal-day.other:hover { background: transparent; }
+
+    #projects .cal-day.today:not(.selected) {
+      box-shadow: inset 0 0 0 2px var(--accent);
+    }
+
+    #projects .cal-day.selected {
+      background: var(--accent-deep);
+      color: #fff;
+    }
+
+    #projects .cal-day .dot {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent-deep);
+    }
+
+    #projects .cal-day.selected .dot { background: #fff; }
+
+    #projects .selected-date {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+
+    #projects .selected-date strong { color: var(--accent-deep); font-weight: 700; }
+
+    #projects .add-form {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0 4px;
+    }
+
+    #projects .add-input {
+      flex: 1;
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 13px 20px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.98rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #projects .add-input::placeholder { color: #c2a89a; }
+
+    #projects .add-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(232, 165, 152, 0.25);
+    }
+
+    #projects .add-btn {
+      border: none;
+      background: var(--accent-deep);
+      color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      transition: background 0.2s ease, transform 0.18s ease;
+    }
+
+    #projects .add-btn:hover { background: #c56843; }
+    #projects .add-btn:active { transform: scale(0.95); }
+
+    #projects .pri-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    #projects .pri-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.3px;
+    }
+
+    #projects .pri-seg {
+      display: inline-flex;
+      background: var(--bg-soft);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 2px;
+    }
+
+    #projects .pri-btn {
+      border: none;
+      background: transparent;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: var(--ink-soft);
+      transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+
+    #projects .pri-btn:hover { color: var(--ink); }
+
+    #projects .pri-btn.active[data-pri="high"]   { background: #e8a598; color: #fff; }
+    #projects .pri-btn.active[data-pri="medium"] { background: #f5c6a8; color: #fff; }
+    #projects .pri-btn.active[data-pri="low"]    { background: #d8c0b2; color: #fff; }
+
+    #projects .pri-btn:active { transform: scale(0.94); }
+
+    #projects .list-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 26px 0 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    #projects .list-head h2 {
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--accent-deep);
+    }
+
+    #projects .list-head .count { font-size: 0.82rem; color: var(--ink-soft); font-weight: 600; }
+
+    #projects .task-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    #projects .task {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-left-width: 4px;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      animation: pop 0.22s ease;
+    }
+
+    #projects .task[data-pri="high"]   { border-left-color: #e8a598; }
+    #projects .task[data-pri="medium"] { border-left-color: #f5c6a8; }
+    #projects .task[data-pri="low"]    { border-left-color: #d8c0b2; }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+
+    #projects .task:hover { box-shadow: var(--shadow-soft); }
+
+    #projects .task input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: background 0.18s ease, border-color 0.18s ease;
+      margin: 0;
+    }
+
+    #projects .task input[type="checkbox"]:checked {
+      background: var(--accent-deep);
+      border-color: var(--accent-deep);
+    }
+
+    #projects .task input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 3px;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
+    }
+
+    #projects .task-body { flex: 1; min-width: 0; }
+
+    #projects .task-text {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+      word-break: break-word;
+      line-height: 1.4;
+      cursor: text;
+      border-radius: 6px;
+      padding: 2px 4px;
+      margin: -2px -4px;
+      transition: background 0.18s ease;
+    }
+
+    #projects .task-text:hover { background: rgba(232, 165, 152, 0.12); }
+
+    #projects .task-edit-input {
+      width: 100%;
+      border: 2px solid var(--accent);
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px 10px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--ink);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(232, 165, 152, 0.25);
+    }
+
+    #projects .task.done .task-text {
+      text-decoration: line-through;
+      text-decoration-color: var(--accent);
+      color: #b89c8c;
+    }
+
+    #projects .task-date {
+      font-size: 0.74rem;
+      color: var(--ink-soft);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    #projects .task-date .badge {
+      display: inline-block;
+      background: var(--bg-soft);
+      color: var(--accent-deep);
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    #projects .delete-btn {
+      border: none;
+      background: transparent;
+      color: #d8b8a8;
+      font-size: 1.15rem;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    #projects .delete-btn:hover { background: #f7e0d6; color: var(--accent-deep); }
+    #projects .delete-btn:active { transform: scale(0.88); }
+
+    #projects .empty-state {
+      text-align: center;
+      padding: 28px 16px;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    #projects .empty-state .emoji { font-size: 2rem; display: block; margin-bottom: 6px; }
+
+    /* ===== Weather app (Open-Meteo, scoped to #projects) ===== */
+    /* Clean, modern card style with soft gradient and rounded corners. */
+    #projects .weather-app {
+      background: linear-gradient(135deg, #ffffff 0%, #f6f9fc 100%);
+      border: 1px solid #e5eaf0;
+      border-radius: var(--radius-lg);
+      padding: clamp(20px, 4vw, 32px);
+      margin: 0 0 16px;
+      box-shadow: 0 8px 24px rgba(30, 50, 80, 0.06);
+    }
+
+    #projects .weather-title {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent-deep);
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    /* Search form: input + button in a row */
+    #projects .weather-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    #projects .weather-input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid #d8dee6;
+      background: #fff;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.98rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    #projects .weather-input::placeholder { color: #a8b2bd; }
+
+    #projects .weather-input:focus {
+      border-color: #4a90d9;
+      box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.18);
+    }
+
+    #projects .weather-btn {
+      border: none;
+      background: #4a90d9;
+      color: #fff;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0 22px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+
+    #projects .weather-btn:hover { background: #3d7dc0; }
+    #projects .weather-btn:active { transform: scale(0.97); }
+    #projects .weather-btn:disabled {
+      background: #b6c4d4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Status message line */
+    #projects .weather-msg {
+      text-align: center;
+      font-size: 0.92rem;
+      font-weight: 500;
+      min-height: 22px;
+      padding: 6px 4px;
+    }
+
+    #projects .weather-msg.error { color: #c96548; }
+    #projects .weather-msg.loading { color: var(--ink-soft); }
+
+    /* Weather result card */
+    #projects .weather-card {
+      display: none;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(135deg, #4a90d9 0%, #6fa8e0 100%);
+      border-radius: var(--radius-md);
+      padding: 22px 24px;
+      margin-top: 12px;
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(74, 144, 217, 0.25);
+      animation: pop 0.25s ease;
+    }
+
+    #projects .weather-card.show { display: flex; }
+
+    /* Weather icon (emoji glyph) */
+    #projects .weather-icon {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.8rem;
+      line-height: 1;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+    }
+
+    #projects .weather-info { flex: 1; min-width: 0; }
+
+    #projects .weather-city {
+      font-weight: 700;
+      font-size: 1.2rem;
+      word-break: break-word;
+      line-height: 1.2;
+    }
+
+    #projects .weather-temp {
+      font-size: clamp(1.9rem, 6vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
+
+    #projects .weather-desc {
+      font-size: 0.95rem;
+      font-weight: 500;
+      opacity: 0.92;
+      margin-top: 2px;
+    }
+
+    #projects .weather-wind {
+      font-size: 0.86rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    /* ===== Fun facts & footer ===== */
+    .fun-fact {
+      background: linear-gradient(135deg, #f7d9c8, #efc3ad);
+      border-radius: var(--radius-md);
+      padding: 22px 28px;
+      max-width: 640px;
+      margin: 0 auto 18px;
+      color: var(--ink);
+      font-weight: 500;
+      font-size: clamp(0.95rem, 2vw, 1.05rem);
+      box-shadow: var(--shadow);
+    }
+
+    .fun-fact strong {
+      color: var(--accent-deep);
+      display: block;
+      margin-bottom: 4px;
+      font-family: 'Pacifico', cursive;
+      font-weight: 400;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px 48px;
+    }
+
+    .copyright { color: var(--ink-soft); font-size: 0.85rem; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 32px 16px 24px; }
+      .avatar { width: 120px; height: 120px; }
+    }
+
+    @media (max-width: 480px) {
+      .intro { padding: 24px 18px; }
+      .card { padding: 24px 18px; }
+      .email-btn { padding: 12px 20px; font-size: 0.9rem; }
+      #projects .project-card { padding: 18px; gap: 14px; }
+      #projects .pc-orbit { display: none; }
+      #projects .app { padding: 20px 16px; }
+      #projects .cal-day { font-size: 0.84rem; }
+      #projects .add-input { padding: 12px 16px; font-size: 0.92rem; }
+      #projects .add-btn { padding: 0 18px; font-size: 0.9rem; }
+      #projects .task { padding: 10px 12px; gap: 10px; }
+      #projects .weather-form { flex-direction: column; gap: 8px; }
+      #projects .weather-input { padding: 12px 14px; font-size: 0.92rem; }
+      #projects .weather-btn { padding: 11px 18px; font-size: 0.9rem; }
+      #projects .weather-card { flex-wrap: wrap; justify-content: center; text-align: center; padding: 18px 16px; gap: 12px; }
+      #projects .weather-icon { width: 64px; height: 64px; font-size: 2.2rem; }
+      .topnav a { font-size: 0.82rem; padding: 7px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top nav -->
+  <nav class="topnav" id="mainNav">
+    <a href="#home" class="active">Home</a>
+    <a href="resume.html">Resume</a>
+    <a href="#contact">Contact Me</a>
+    <a href="#projects">Projects</a>
+  </nav>
+
+  <!-- ===== Home ===== -->
+  <section id="home">
+    <div class="container">
+      <header class="hero">
+        <div class="avatar">
+          <img src="profile.jpg" alt="my profile photo" width="200" style="border-radius:50%">
+        </div>
+        <h1>Hi, I'm Jingheng Yu</h1>
+        <p class="tagline">A curious postgraduate who finds joy in life's little wonders ✨</p>
+      </header>
+
+      <section class="intro">
+        Hello and welcome to my little corner of the internet! I'm a postgraduate
+        student who is always curious about life and loves exploring the little
+        happiness hidden in everyday moments. I believe joy is never far away — it
+        lives in a tasty snack, a breath of fresh air, and a tidy corner that
+        feels just right. I'd love to share a few of my favorite things with you.
+      </section>
+    </div>
+  </section>
+
+  <!-- ===== Resume ===== -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-head">
+        <h2>Resume</h2>
+        <p>A handful of little joys that make my days brighter</p>
+      </div>
+
+      <div class="section-head" style="margin-top: 32px;">
+        <h2>Three Things I Love</h2>
+      </div>
+
+      <section class="grid">
+        <article class="card">
+          <div class="icon" aria-hidden="true">🍜</div>
+          <h3>Tasting Food</h3>
+          <p>I love trying different cuisines and discovering tasty snacks.
+            Good food always lights up my day.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">🎾</div>
+          <h3>Outdoor Sports</h3>
+          <p>Playing tennis, hiking and diving — I enjoy breathing fresh air in
+            nature and feeling the energy from outdoor activities.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon" aria-hidden="true">🧹</div>
+          <h3>Tidying Up</h3>
+          <p>It brings me huge joy to arrange everything neatly. My mood
+            becomes peaceful and happy once the room is well-organized.</p>
+        </article>
+      </section>
+
+      <div style="height: 24px;"></div>
+
+      <div class="fun-fact">
+        <strong>Fun Fact #1</strong>
+        I once tried to bake a three-layer cake and ended up with a very
+        delicious pancake — and zero regrets. 🥞
+      </div>
+      <div class="fun-fact">
+        <strong>Fun Fact #2</strong>
+        I once won the first prize in a mahjong competition. 🀄
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact Me</h2>
+        <p>I'd love to hear from you — drop me a line ✉️</p>
+      </div>
+
+      <section class="contact-card">
+        <span class="envelope" aria-hidden="true">💌</span>
+        <p>Feel free to reach out for a chat, a collaboration, or just to say hello.
+          I read every message and try to reply as soon as I can.</p>
+        <a href="mailto:Jingheng.Yu26@student.xjtlu.edu.cn" class="email-btn">
+          ✉️ <span class="addr">Jingheng.Yu26@student.xjtlu.edu.cn</span>
+        </a>
+
+        <form class="contact-form">
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="Name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="Email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="Message" placeholder="Your message" required></textarea>
+          </div>
+          <button type="submit" class="email-btn">Send ✉️</button>
+        </form>
+      </section>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section id="projects">
+    <div class="container">
+      <header class="projects-header">
+        <h1>Projects</h1>
+        <p class="tagline">A cozy little to-do list to keep my days on track ✦</p>
+      </header>
+
+      <a class="project-card" href="physics.html" aria-label="Open Mechanics Phenomena Visualized">
+        <div class="pc-body">
+          <div class="pc-kicker">Interactive &middot; Physics</div>
+          <h2>Mechanics Phenomena Visualized</h2>
+          <p>A gravity sandbox where planets attract, collide and merge. Slingshot new bodies, tune G, or spin up a galaxy.</p>
+          <span class="pc-cta">Open experiment <span aria-hidden="true">&rarr;</span></span>
+        </div>
+        <div class="pc-orbit" aria-hidden="true">
+          <span class="ring1"></span>
+          <span class="ring2"></span>
+          <span class="core"></span>
+          <span class="satellite"></span>
+        </div>
+      </a>
+
+      <div class="week-links">
+        <a href="physics.html">Week6: Mechanics Phenomena Visualized (Gravity Simulation)</a>
+      </div>
+
+      <main class="app">
+        <div class="cal-head">
+          <button class="cal-btn" id="prevMonth" aria-label="Previous month">‹</button>
+          <div class="cal-title" id="calTitle">Month Year</div>
+          <button class="cal-btn" id="nextMonth" aria-label="Next month">›</button>
+        </div>
+
+        <div class="cal-grid" id="dowRow"></div>
+        <div class="cal-grid" id="calGrid"></div>
+
+        <div class="selected-date" id="selectedDate">Pick a date above</div>
+
+        <form class="add-form" id="addForm">
+          <input
+            type="text"
+            class="add-input"
+            id="taskInput"
+            placeholder="Add a task…"
+            autocomplete="off"
+            maxlength="140"
+          />
+          <button type="submit" class="add-btn">Add</button>
+        </form>
+
+        <div class="pri-row">
+          <span class="pri-label">Priority</span>
+          <div class="pri-seg" id="priSeg" role="radiogroup" aria-label="Priority">
+            <button type="button" class="pri-btn" data-pri="high" data-weight="3" role="radio" aria-checked="false">High</button>
+            <button type="button" class="pri-btn active" data-pri="medium" data-weight="2" role="radio" aria-checked="true">Medium</button>
+            <button type="button" class="pri-btn" data-pri="low" data-weight="1" role="radio" aria-checked="false">Low</button>
+          </div>
+        </div>
+
+        <div class="list-head">
+          <h2>My Tasks</h2>
+          <span class="count" id="count">0 of 0 tasks completed</span>
+        </div>
+
+        <ul class="task-list" id="taskList"></ul>
+      </main>
+
+      <section class="weather-app" aria-label="Weather app">
+        <div class="weather-title">Local Weather 🌤️</div>
+        <form class="weather-form" id="weatherForm">
+          <input
+            type="text"
+            class="weather-input"
+            id="weatherInput"
+            placeholder="Enter a city, e.g. Nanjing"
+            autocomplete="off"
+            maxlength="60"
+          />
+          <button type="submit" class="weather-btn" id="weatherBtn">Search</button>
+        </form>
+        <div class="weather-msg" id="weatherMsg" aria-live="polite"></div>
+        <div class="weather-card" id="weatherCard" role="region" aria-label="Weather result">
+          <!-- Weather icon shown as an emoji glyph (no external image needed) -->
+          <div class="weather-icon" id="weatherIcon" aria-hidden="true">—</div>
+          <div class="weather-info">
+            <div class="weather-city" id="weatherCity">—</div>
+            <div class="weather-temp" id="weatherTemp">—</div>
+            <div class="weather-desc" id="weatherDesc">—</div>
+            <div class="weather-wind" id="weatherWind">—</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <footer>
+    <p class="copyright">Made with warmth &amp; rounded corners · © 2026 Jingheng Yu</p>
+  </footer>
+
+  <!-- ===== Projects JS (verbatim) ===== -->
+  <script>
+    (function () {
+      'use strict';
+
+      var PRI_WEIGHT = { high: 3, medium: 2, low: 1 };
+
+      // ===== Supabase REST config =====
+      var SUPA_PROJECT_URL = 'https://esrivblxlkqubdbodkdg.supabase.co';
+      var SUPA_KEY = 'sb_publishable_4NAyKY9F-PVAmhXZpnPNaw_yhIycD3C';
+      var SUPA_TABLE = 'todos';
+
+      function supaEndpoint(path) {
+        return SUPA_PROJECT_URL + '/rest/v1/' + SUPA_TABLE + path;
+      }
+
+      function supaHeaders(extra) {
+        var h = {
+          'apikey': SUPA_KEY,
+          'Authorization': 'Bearer ' + SUPA_KEY,
+          'Content-Type': 'application/json'
+        };
+        if (extra) Object.keys(extra).forEach(function (k) { h[k] = extra[k]; });
+        return h;
+      }
+
+      // Map DB row (snake_case) → app task (camelCase)
+      function fromRow(r) {
+        return {
+          id: r.id,
+          text: r.task,
+          priority: r.priority || 'medium',
+          dateKey: r.date,
+          done: !!r.is_complete
+        };
+      }
+
+      // Map app task → DB row (for insert). Only the user-defined fields:
+      // task, is_complete, date, priority. The id is generated by Supabase.
+      function toRow(t) {
+        return {
+          task: t.text,
+          is_complete: t.done,
+          date: t.dateKey,
+          priority: t.priority || 'medium'
+        };
+      }
+
+      function apiFetch(path, opts) {
+        opts = opts || {};
+        return fetch(supaEndpoint(path), {
+          method: opts.method || 'GET',
+          headers: supaHeaders(opts.headers),
+          body: opts.body ? JSON.stringify(opts.body) : undefined
+        }).then(function (r) {
+          if (!r.ok) {
+            return r.text().then(function (txt) {
+              throw new Error('Supabase ' + r.status + ': ' + txt);
+            });
+          }
+          // DELETE returns no body; others may
+          var ct = r.headers.get('content-type') || '';
+          return ct.indexOf('json') !== -1 ? r.json() : null;
+        });
+      }
+
+      // Read all todos ordered by date asc (stable order across reloads)
+      function apiAll() {
+        return apiFetch('?select=id,task,is_complete,date,priority&order=date.asc', {
+          method: 'GET'
+        });
+      }
+
+      // Insert one row, return the inserted row (with its generated id)
+      function apiInsert(task) {
+        return apiFetch('?select=id,task,is_complete,date,priority', {
+          method: 'POST',
+          headers: { 'Prefer': 'return=representation' },
+          body: toRow(task)
+        });
+      }
+
+      // Patch a row by id
+      function apiUpdate(id, patch) {
+        return apiFetch('?id=eq.' + encodeURIComponent(id), {
+          method: 'PATCH',
+          headers: { 'Prefer': 'return=minimal' },
+          body: patch
+        });
+      }
+
+      // Delete a row by id
+      function apiDelete(id) {
+        return apiFetch('?id=eq.' + encodeURIComponent(id), {
+          method: 'DELETE'
+        });
+      }
+
+      var tasks = [];
+      var viewDate = new Date();
+      var selectedDate = new Date();
+
+      var DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      var MONTHS = ['January','February','March','April','May','June',
+                     'July','August','September','October','November','December'];
+
+      var dowRow = document.getElementById('dowRow');
+      var calGrid = document.getElementById('calGrid');
+      var calTitle = document.getElementById('calTitle');
+      var selectedDateEl = document.getElementById('selectedDate');
+      var prevMonthBtn = document.getElementById('prevMonth');
+      var nextMonthBtn = document.getElementById('nextMonth');
+      var addForm = document.getElementById('addForm');
+      var taskInput = document.getElementById('taskInput');
+      var taskList = document.getElementById('taskList');
+      var countEl = document.getElementById('count');
+
+      // Load tasks from Supabase on page load, ordered by time
+      function loadTasks() {
+        return apiAll().then(function (rows) {
+          return (rows || []).map(fromRow);
+        }).catch(function (err) {
+          console.error('Failed to load tasks from Supabase:', err.message);
+          return [];
+        });
+      }
+
+      // (kept as no-op so existing call sites don't break; persistence is per-op now)
+      function saveTasks() {}
+
+      function uid() {
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+      }
+
+      function startOfDay(d) {
+        var c = new Date(d);
+        c.setHours(0, 0, 0, 0);
+        return c;
+      }
+
+      function sameDay(a, b) {
+        return startOfDay(a).getTime() === startOfDay(b).getTime();
+      }
+
+      function dateKey(d) {
+        var c = startOfDay(d);
+        var y = c.getFullYear();
+        var m = String(c.getMonth() + 1).padStart(2, '0');
+        var day = String(c.getDate()).padStart(2, '0');
+        return y + '-' + m + '-' + day;
+      }
+
+      function fmtDate(d) {
+        var c = startOfDay(d);
+        var today = startOfDay(new Date());
+        var diff = Math.round((today - c) / 86400000);
+        var base = MONTHS[c.getMonth()] + ' ' + c.getDate();
+        if (diff === 0) return 'Today';
+        if (diff === 1) return 'Yesterday';
+        if (diff === -1) return 'Tomorrow';
+        if (diff > 1 && diff <= 7) return diff + ' days ago';
+        return base + (c.getFullYear() !== today.getFullYear() ? ', ' + c.getFullYear() : '');
+      }
+
+      function renderDow() {
+        dowRow.innerHTML = '';
+        DOW.forEach(function (name) {
+          var el = document.createElement('div');
+          el.className = 'cal-dow';
+          el.textContent = name;
+          dowRow.appendChild(el);
+        });
+      }
+
+      function renderCalendar() {
+        calTitle.textContent = MONTHS[viewDate.getMonth()] + ' ' + viewDate.getFullYear();
+        calGrid.innerHTML = '';
+
+        var year = viewDate.getFullYear();
+        var month = viewDate.getMonth();
+        var firstOfMonth = new Date(year, month, 1);
+        var leadBlanks = (firstOfMonth.getDay() + 6) % 7;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        var daysInPrev = new Date(year, month, 0).getDate();
+
+        var today = startOfDay(new Date());
+        var taskDays = {};
+        tasks.forEach(function (t) { taskDays[t.dateKey] = true; });
+
+        for (var i = leadBlanks - 1; i >= 0; i--) {
+          calGrid.appendChild(makeDay(daysInPrev - i, 'other', null));
+        }
+
+        for (var d = 1; d <= daysInMonth; d++) {
+          var cellDate = new Date(year, month, d);
+          var classes = [];
+          if (sameDay(cellDate, today)) classes.push('today');
+          if (sameDay(cellDate, selectedDate)) classes.push('selected');
+          var cell = makeDay(d, classes.join(' '), cellDate);
+          if (taskDays[dateKey(cellDate)]) {
+            var dot = document.createElement('span');
+            dot.className = 'dot';
+            cell.appendChild(dot);
+          }
+          calGrid.appendChild(cell);
+        }
+
+        var total = leadBlanks + daysInMonth;
+        var trail = (7 - (total % 7)) % 7;
+        for (var j = 1; j <= trail; j++) {
+          calGrid.appendChild(makeDay(j, 'other', null));
+        }
+
+        selectedDateEl.innerHTML =
+          'Adding to <strong>' + MONTHS[selectedDate.getMonth()] + ' ' +
+          selectedDate.getDate() + ', ' + selectedDate.getFullYear() + '</strong>';
+      }
+
+      function makeDay(num, classes, date) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cal-day' + (classes ? ' ' + classes : '');
+        btn.textContent = num;
+        if (date) {
+          btn.addEventListener('click', function () {
+            selectedDate = date;
+            renderCalendar();
+            taskInput.focus();
+          });
+        } else {
+          btn.classList.add('empty');
+        }
+        return btn;
+      }
+
+      function renderTasks() {
+        taskList.innerHTML = '';
+
+        tasks.sort(function (a, b) {
+          if (a.done !== b.done) return a.done ? 1 : -1;
+          var aw = PRI_WEIGHT[a.priority] || 2;
+          var bw = PRI_WEIGHT[b.priority] || 2;
+          if (aw !== bw) return bw - aw;
+          // No ts column; preserve DB order (stable sort keeps date.asc from API)
+          return 0;
+        });
+
+        if (tasks.length === 0) {
+          var empty = document.createElement('li');
+          empty.className = 'empty-state';
+          empty.innerHTML = '<span class="emoji">🗒️</span>No tasks yet. Pick a date and add your first one!';
+          taskList.appendChild(empty);
+        } else {
+          tasks.forEach(function (t) {
+            taskList.appendChild(makeTask(t));
+          });
+        }
+
+        var total = tasks.length;
+        var done = tasks.filter(function (t) { return t.done; }).length;
+        countEl.textContent = done + ' of ' + total + ' task' + (total === 1 ? '' : 's') + ' completed';
+      }
+
+      function makeTask(t) {
+        var li = document.createElement('li');
+        li.className = 'task' + (t.done ? ' done' : '');
+        li.dataset.id = t.id;
+        li.dataset.pri = t.priority || 'medium';
+
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.checked = t.done;
+        cb.setAttribute('aria-label', 'Mark task done');
+        cb.addEventListener('change', function () {
+          t.done = cb.checked;
+          apiUpdate(t.id, { is_complete: t.done }).catch(function (err) {
+            console.error('Failed to update task in Supabase:', err.message);
+          });
+          renderTasks();
+          renderCalendar();
+        });
+
+        var body = document.createElement('div');
+        body.className = 'task-body';
+
+        var text = document.createElement('div');
+        text.className = 'task-text';
+        text.textContent = t.text;
+        text.title = 'Click to edit';
+
+        text.addEventListener('click', function () {
+          if (text.querySelector('.task-edit-input')) return;
+          var input = document.createElement('input');
+          input.type = 'text';
+          input.className = 'task-edit-input';
+          input.value = t.text;
+          input.maxLength = 140;
+          text.replaceWith(input);
+          input.focus();
+          input.select();
+
+          var finished = false;
+          function commit() {
+            if (finished) return;
+            finished = true;
+            var val = input.value.trim();
+            if (!val) { cancel(); return; }
+            t.text = val;
+            apiUpdate(t.id, { task: t.text }).catch(function (err) {
+              console.error('Failed to update task in Supabase:', err.message);
+            });
+            renderTasks();
+          }
+          function cancel() {
+            if (finished) return;
+            finished = true;
+            input.replaceWith(text);
+          }
+
+          input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') { e.preventDefault(); commit(); }
+            else if (e.key === 'Escape') { e.preventDefault(); cancel(); }
+          });
+          input.addEventListener('blur', function () {
+            setTimeout(function () {
+              if (!finished) commit();
+            }, 0);
+          });
+        });
+
+        var date = document.createElement('div');
+        date.className = 'task-date';
+        var priLabel = (t.priority || 'medium').charAt(0).toUpperCase() + (t.priority || 'medium').slice(1);
+        date.innerHTML = '<span class="badge">' + priLabel + '</span> <span class="badge" style="margin-left:4px">' + fmtDate(new Date(t.dateKey + 'T00:00:00')) + '</span>';
+
+        body.appendChild(text);
+        body.appendChild(date);
+
+        var del = document.createElement('button');
+        del.type = 'button';
+        del.className = 'delete-btn';
+        del.setAttribute('aria-label', 'Delete task');
+        del.innerHTML = '&times;';
+        del.addEventListener('click', function () {
+          tasks = tasks.filter(function (x) { return x.id !== t.id; });
+          apiDelete(t.id).catch(function (err) {
+            console.error('Failed to delete task in Supabase:', err.message);
+          });
+          renderTasks();
+          renderCalendar();
+        });
+
+        li.appendChild(cb);
+        li.appendChild(body);
+        li.appendChild(del);
+        return li;
+      }
+
+      function addTask(text, priority) {
+        text = (text || '').trim();
+        if (!text) return;
+        // Build the row to insert (id is generated by Supabase)
+        var draft = {
+          text: text,
+          priority: priority || 'medium',
+          dateKey: dateKey(selectedDate),
+          done: false
+        };
+        // Insert, wait for the row to come back with its real id, then add to UI.
+        // This guarantees delete/update on the freshly added task will work, and
+        // that a refresh will load the same task back from the database.
+        apiInsert(draft).then(function (rows) {
+          var row = Array.isArray(rows) ? rows[0] : rows;
+          if (!row) throw new Error('insert returned no row');
+          tasks.push(fromRow(row));
+          renderTasks();
+          renderCalendar();
+        }).catch(function (err) {
+          console.error('Failed to save task to Supabase:', err.message);
+          alert('Could not save the task. Check the console for the Supabase error.');
+        });
+        taskInput.value = '';
+        taskInput.focus();
+      }
+
+      var priSeg = document.getElementById('priSeg');
+      var currentPri = 'medium';
+
+      priSeg.addEventListener('click', function (e) {
+        var btn = e.target.closest('.pri-btn');
+        if (!btn) return;
+        currentPri = btn.dataset.pri;
+        priSeg.querySelectorAll('.pri-btn').forEach(function (b) {
+          var checked = (b === btn);
+          b.classList.toggle('active', checked);
+          b.setAttribute('aria-checked', checked ? 'true' : 'false');
+        });
+      });
+
+      prevMonthBtn.addEventListener('click', function () {
+        viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1);
+        renderCalendar();
+      });
+
+      nextMonthBtn.addEventListener('click', function () {
+        viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1);
+        renderCalendar();
+      });
+
+      addForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        addTask(taskInput.value, currentPri);
+      });
+
+      renderDow();
+      renderCalendar();
+      // Initial render (empty), then load tasks from Supabase
+      renderTasks();
+      loadTasks().then(function (loaded) {
+        tasks = loaded;
+        renderTasks();
+        renderCalendar();
+      });
+    })();
+
+    // Nav active-pill updater on scroll
+    (function () {
+      var nav = document.getElementById('mainNav');
+      var links = nav.querySelectorAll('a[href^="#"]');
+      var sections = [];
+      links.forEach(function (a) {
+        var id = a.getAttribute('href').slice(1);
+        var el = document.getElementById(id);
+        if (el) sections.push({ id: id, el: el, a: a });
+      });
+
+      function onScroll() {
+        var scrollY = window.scrollY + window.innerHeight / 3;
+        var current = sections[0] && sections[0].id;
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].el.offsetTop <= scrollY) {
+            current = sections[i].id;
+          }
+        }
+        links.forEach(function (a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+        });
+      }
+
+      // Defer so the Projects IIFE runs first
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+
+    // ===== Weather app IIFE (Open-Meteo, no API key) =====
+    // Flow: city name → Open-Meteo Geocoding API (lat/lon) → Open-Meteo Forecast API (current weather).
+    // Both APIs support CORS and require no authentication.
+    (function () {
+      'use strict';
+
+      // Open-Meteo base URLs (public, no key, CORS-friendly)
+      var GEO_BASE   = 'https://geocoding-api.open-meteo.com/v1/search';
+      var FORE_BASE  = 'https://api.open-meteo.com/v1/forecast';
+
+      // DOM references
+      var form   = document.getElementById('weatherForm');
+      var input  = document.getElementById('weatherInput');
+      var btn    = document.getElementById('weatherBtn');
+      var msgEl  = document.getElementById('weatherMsg');
+      var cardEl = document.getElementById('weatherCard');
+      var iconEl = document.getElementById('weatherIcon');
+      var cityEl = document.getElementById('weatherCity');
+      var tempEl = document.getElementById('weatherTemp');
+      var descEl = document.getElementById('weatherDesc');
+      var windEl = document.getElementById('weatherWind');
+
+      /* --- WMO weather code → { description, emoji } ---
+         Full WMO code table condensed into buckets. Reference:
+         https://open-meteo.com/en/docs */
+      var WMO = {
+        0:  { d: 'Clear sky',              e: '☀️' },
+        1:  { d: 'Mainly clear',           e: '🌤️' },
+        2:  { d: 'Partly cloudy',          e: '⛅' },
+        3:  { d: 'Overcast',               e: '☁️' },
+        45: { d: 'Fog',                    e: '🌫️' },
+        48: { d: 'Freezing fog',           e: '🌫️' },
+        51: { d: 'Light drizzle',          e: '🌦️' },
+        53: { d: 'Moderate drizzle',       e: '🌦️' },
+        55: { d: 'Dense drizzle',          e: '🌦️' },
+        56: { d: 'Light freezing drizzle', e: '🌧️' },
+        57: { d: 'Dense freezing drizzle', e: '🌧️' },
+        61: { d: 'Slight rain',            e: '🌧️' },
+        63: { d: 'Moderate rain',          e: '🌧️' },
+        65: { d: 'Heavy rain',             e: '🌧️' },
+        66: { d: 'Light freezing rain',    e: '🌧️' },
+        67: { d: 'Heavy freezing rain',    e: '🌧️' },
+        71: { d: 'Slight snow',            e: '🌨️' },
+        73: { d: 'Moderate snow',          e: '🌨️' },
+        75: { d: 'Heavy snow',             e: '🌨️' },
+        77: { d: 'Snow grains',            e: '🌨️' },
+        80: { d: 'Slight showers',         e: '🌦️' },
+        81: { d: 'Moderate showers',       e: '🌦️' },
+        82: { d: 'Violent showers',        e: '⛈️' },
+        85: { d: 'Slight snow showers',    e: '🌨️' },
+        86: { d: 'Heavy snow showers',     e: '🌨️' },
+        95: { d: 'Thunderstorm',           e: '⛈️' },
+        96: { d: 'Thunderstorm w/ hail',   e: '⛈️' },
+        99: { d: 'Severe thunderstorm',    e: '⛈️' }
+      };
+
+      // Look up WMO code → { description, emoji } with graceful fallback
+      function wmoLookup(code) {
+        if (typeof code !== 'number') return { d: 'Unknown', e: '❓' };
+        return WMO[code] || { d: 'Unknown weather (code ' + code + ')', e: '❓' };
+      }
+
+      /* --- UI helpers --- */
+      function showMsg(text, kind) {
+        msgEl.textContent = text || '';
+        msgEl.className = 'weather-msg' + (kind ? ' ' + kind : '');
+      }
+
+      function setLoading(isLoading) {
+        btn.disabled = isLoading;
+        btn.textContent = isLoading ? 'Searching…' : 'Search';
+      }
+
+      function showCard(city, tempStr, desc, emoji, windStr) {
+        cityEl.textContent = city;
+        tempEl.textContent = tempStr;
+        descEl.textContent = desc;
+        iconEl.textContent = emoji;                 // emoji glyph inside the icon div
+        windEl.textContent = windStr || '';
+        cardEl.classList.add('show');
+      }
+
+      function hideCard() { cardEl.classList.remove('show'); }
+
+      /* --- Network helpers --- */
+      // Fetches JSON from a URL; throws with a friendly message on any failure.
+      function fetchJson(url) {
+        // Log the URL for homework / debugging
+        console.log('[weather] GET', url);
+        return fetch(url)
+          .then(function (resp) {
+            if (!resp.ok) throw new Error('HTTP ' + resp.status);
+            return resp.json();
+          })
+          .then(function (json) {
+            console.log('[weather] response:', json);
+            return json;
+          });
+      }
+
+      /* --- Two-step lookup: geocode → forecast --- */
+      function fetchWeather(cityName) {
+        setLoading(true);
+        showMsg('Loading…', 'loading');
+        hideCard();
+
+        // Open-Meteo geocoder: try English match first, then retry with language=zh
+        // (better at matching Chinese input like "南京").
+        function geocode(name, language) {
+          var url = GEO_BASE
+            + '?name=' + encodeURIComponent(name)
+            + '&count=1'
+            + '&language=' + encodeURIComponent(language)
+            + '&format=json';
+          return fetchJson(url).then(function (json) {
+            if (Array.isArray(json && json.results) && json.results.length > 0) {
+              return json.results[0];
+            }
+            return null;
+          });
+        }
+
+        geocode(cityName, 'en')
+          .then(function (loc) {
+            if (!loc) return geocode(cityName, 'zh');   // fallback for Chinese input
+            return loc;
+          })
+          .then(function (loc) {
+            if (!loc) throw new Error('NOT_FOUND');
+            // Step 2 — Current weather at those coordinates
+            var forecastUrl = FORE_BASE
+              + '?latitude='  + loc.latitude
+              + '&longitude=' + loc.longitude
+              + '&current='   + 'temperature_2m,weather_code,wind_speed_10m'
+              + '&timezone='  + encodeURIComponent(loc.timezone || 'auto');
+            return fetchJson(forecastUrl).then(function (wJson) {
+              return { geo: loc, weather: wJson };
+            });
+          })
+          .then(function (pair) {
+            var cur = pair.weather && pair.weather.current;
+            if (!cur || typeof cur.temperature_2m !== 'number') {
+              throw new Error('NO_DATA');
+            }
+            var wmo     = wmoLookup(cur.weather_code);
+            var cityDisp = pair.geo.name + (pair.geo.country ? ', ' + pair.geo.country : '');
+            var tempStr  = Math.round(cur.temperature_2m) + '°C';
+            var windStr  = 'Wind: ' + Math.round(cur.wind_speed_10m) + ' km/h';
+
+            showMsg('', '');
+            showCard(cityDisp, tempStr, wmo.d, wmo.e, windStr);
+          })
+          .catch(function (err) {
+            console.error('[weather] failed:', err);
+            // Map internal error codes to the user-facing message
+            if (err && err.message === 'NOT_FOUND') {
+              showMsg("Couldn't find that city — check the spelling.", 'error');
+            } else if (err && err.message === 'NO_DATA') {
+              showMsg('Weather data not available for that location.', 'error');
+            } else {
+              // Network / CORS / unknown → still show the generic error
+              showMsg("Couldn't find that city — check the spelling.", 'error');
+            }
+          })
+          .then(function () {
+            setLoading(false);
+          });
+      }
+
+      /* --- Wire up the form --- */
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var cityName = (input.value || '').trim();
+        if (!cityName) {
+          showMsg('Enter a city first.', 'error');
+          hideCard();
+          input.focus();
+          return;
+        }
+        fetchWeather(cityName);
+      });
+    })();
+  </script>
+
+  <!-- ===== Supabase Contact Form Integration ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+    (function () {
+      try {
+        var sb = window.supabase.createClient(
+          "https://kzwsswetehhenzitvdsyu.supabase.co",
+          "sb_publishable_moxNYZjy3Cz6Rga0cyg2lw_bHP2aWmS"
+        );
+
+        document.querySelector("form.contact-form").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var name = document.querySelector("#contact-name").value.trim();
+          var email = document.querySelector("#contact-email").value.trim();
+          var message = document.querySelector("#contact-message").value.trim();
+
+          var btn = e.target.querySelector("button[type='submit']");
+          if (btn) btn.disabled = true;
+
+          try {
+            var { data, error } = await sb
+              .from("contacts")
+              .insert({ name: name, email: email, message: message });
+
+            if (error) {
+              alert("提交失败：" + error.message);
+            } else {
+              alert("提交成功 ✅");
+              e.target.reset();
+            }
+          } catch (err) {
+            alert("提交失败：" + (err && err.message ? err.message : err));
+          } finally {
+            if (btn) btn.disabled = false;
+          }
+        });
+      } catch (initErr) {
+        console.warn("Supabase init skipped:", initErr);
+      }
+    })();
+  </script>
+</body>
+</html>
